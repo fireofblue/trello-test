@@ -3,7 +3,7 @@
         <h2>Trello Test</h2>
         <draggable v-model="cardList">
             <div v-for="(card, index) in cardList">
-                <Card :name="card.task_name" :date="card.date" :index="index"></Card>
+                <Card :index="index"></Card>
             </div>
             <component :is="selectedComponent"></component>
         </draggable>

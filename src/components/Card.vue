@@ -19,7 +19,6 @@
     export default {
         props:[
             'index',
-            'card'
         ],
         data(){
             return{
