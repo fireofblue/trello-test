@@ -8,7 +8,7 @@
         </div>
         <div>
             <div>
-                <button @click="testPostData">Add</button>
+                <button @click="addCard">Add</button>
                 <button @click="setSelectedComponent('AddCard')">Close</button>
                 </a></div>
         </div>
@@ -28,21 +28,17 @@
         methods:{
             ...mapActions([
                 'setSelectedComponent',
-                'addCard',
-                'setKey'
             ]),
-            testPostData(){
+            addCard(){
                 if(this.$store.getters.cardList.length > 0){
-                    console.log('update');
-                    this.addCard(this.textAreaTask);
+                    this.$store.commit('addCard',(this.textAreaTask));
                     this.resource.putData({key:this.$store.getters.key}, this.$store.getters.cardList);
                 }else{
-                    console.log('post');
-                    this.addCard(this.textAreaTask);
+                    this.$store.commit('addCard',(this.textAreaTask));
                     this.resource.saveData(this.$store.getters.cardList).then(response => {
                         return response.json();
                     }).then(data => {
-                        this.setKey(data.name);
+                        this.$store.commit('setKey',(data.name));
                     });
                 }
             }

@@ -1,14 +1,17 @@
 /**
  * Created by nantawat on 8/5/2017 AD.
  */
+import Vue from 'vue';
+
 export const updateList = (state,payload) => {
     state.cardList = payload;
 }
 
 export const updateCard = (state, payload) => {
-
-    state.cardList[payload.index].task_name = payload.name || state.cardList[payload.index].task_name  ;
-    state.cardList[payload.index].date = payload.date || state.cardList[payload.index].date ;
+    Vue.set(state.cardList, payload.index, {
+        task_name : (payload.name == '') ? state.cardList[payload.index].task_name : payload.name,
+        date : (payload.date == '') ?  state.cardList[payload.index].date : payload.date
+    })
 }
 
 export const addCard = (state, payload) => {

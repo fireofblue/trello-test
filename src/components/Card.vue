@@ -2,14 +2,14 @@
     <div class="list-card">
         <span class="list-card-operation">quick-edit</span>
         <div class="list-card-details">
-            <span>{{localName}}</span>
+            <span>{{name}}</span>
             <div>
-                <span>{{localDate}}</span>
+                <span>{{date}}</span>
             </div>
-            <input type="text" placeholder="plase insert sth" v-model="localName" :value="localName"/>name
+            <input type="text" placeholder="plase insert sth" v-model="localName" :value="name"/>name
             <hr>
-            <input type="text" placeholder="plase insert sth" v-model="localDate" :value="localDate"/>date
-            <button @click="updateCard({name:localName,date:localDate,index:localIndex})">submit</button>
+            <input type="text" placeholder="plase insert sth" v-model="localDate" :value="date"/>date
+            <button @click="updateCard({name:localName,date:localDate,index:index})">submit</button>
         </div>
     </div>
 </template>
@@ -18,30 +18,25 @@
     import {mapActions} from 'vuex';
     export default {
         props:[
-            'name',
-            'date',
-            'index'
+            'index',
+            'card'
         ],
-        watch:{
-          name(){
-              this.localName = this.name
-          },
-          date(){
-                this.localDate = this.date
-          },
-          index(){
-                this.localIndex = this.index
-          }
+        data(){
+            return{
+                localName : "",
+                localDate : ""
+            }
         },
-        data() {
-            return {
-                localName : this.name,
-                localDate : this.date,
-                localIndex : this.index
+        computed:{
+            name() {
+                return this.$store.getters.cardList[this.index].task_name
+            },
+            date(){
+                return this.$store.getters.cardList[this.index].date
             }
         },
         methods:{
-                ...mapActions([
+            ...mapActions([
                 'updateCard'
             ])
         }
