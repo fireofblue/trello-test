@@ -28,6 +28,7 @@
         methods:{
             ...mapActions([
                 'setSelectedComponent',
+
             ]),
             addCard(){
                 if(this.$store.getters.cardList.length > 0){
