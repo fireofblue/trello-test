@@ -57,7 +57,7 @@
                     })
                     .then(data => {
                         for (let key in data) {
-                            this.$store.commit('updateList', data[key]);
+                            this.$store.commit('updateList', (data[key] == null) ? [] : data[key]);
                         }
                     });
         }
