@@ -15,7 +15,6 @@ export const updateCard = (state, payload) => {
 }
 
 export const addCard = (state, payload) => {
-    console.log(payload);
     if(typeof payload === 'string' && payload != '')
     {
         state.cardList.push({
